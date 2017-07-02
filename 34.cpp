@@ -50,12 +50,6 @@ struct Fraction {
 	}
 };
 
-/**
- * [gcd description]
- * @param  a [description]
- * @param  b [description]
- * @return   [description]
- */
 long long gcd(long long a, long long b) {
 	return b == 0 ? a : gcd(b, a % b);
 }
