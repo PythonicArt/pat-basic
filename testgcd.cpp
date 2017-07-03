@@ -8,7 +8,7 @@
 #include "stdio.h"
 #include "math.h"
 
-#include "34.cpp"
+#include "35.cpp"
 using namespace std;
 
 
@@ -21,29 +21,51 @@ TEST(GcdTest, IntTest)
   else
   {
     //**********data define*********
-    string input, result;
+    string input;
     string split, rsplit;
     string rline;
     //**********data define*********
-
+    int n;
+    bool result = false;
     // rin>>result;
     while (in >> split and split == "-")
     {
-      int a, b, c, d;
-      in >> a >> b >> c >> d;
-      Fraction num1(a, b);
-      Fraction num2(c, d);
+      in >> n;
+      int a[n], b[n];
+      for (int i = 0; i < n; ++i) in >> a[i];
+      for (int i = 0; i < n; ++i) in >> b[i];
+
       //**********get input*********
       while (getline(rin, rsplit) and rsplit == "-")
       {
-        for (int i = 0; i < 4; i++) {
-          getline(rin, rline);
-          result.append(rline + '\n');
-        }
+        rin >> result;
       }
       // cout<<"jsdkfjsdkf "<<result<<endl;
       // cout<<GetOutput(broken,input)<<endl;
-      EXPECT_EQ(result, GetOutput(num1, num2));
+      int site = IsInsertSort(a, b, n);
+      for (int i = 0; i < n; ++i)
+      {
+        cout << a[i] << " ";
+      }
+      cout << endl;
+      for (int i = 0; i < n; ++i)
+      {
+        cout << b[i] << " ";
+      }
+      cout << site << endl;
+
+      if (site != -1) {
+        sort(b, b + site + 1);
+        for (int i = 0; i < n; ++i)
+        {
+          cout << b[i] << " ";
+        }
+      }
+      else {
+        MergeToNext(a, b, n);
+      }
+      cout << endl;
+      // EXPECT_EQ(result, IsInsertSort(a, b, n));
     }
 
     //*********fileclse************
